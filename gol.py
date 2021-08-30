@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 class Game_Of_Life():
     '''
@@ -27,7 +28,6 @@ class Game_Of_Life():
             size --> integer indicating the size of the board, both height and
                      width.
         '''
-#         self.board = np.zeros((size,size))
         self.board = np.random.randint(low=0, high=2, size=(size, size))
         self.size = size
     
@@ -89,16 +89,49 @@ class Game_Of_Life():
                         self.board[row][col] = 0
             
     
-    def run(self, steps):
+    def run(self, steps, ani=True, filename=None):
         '''
         Runs the game for the specified number of steps given by the user.
         
         Input:
-            steps --> number of steps of the game to be made.
+            steps    --> number of steps of the game to be made.
+            ani      --> boolean flag indicating if the steps should be 
+                         animated. Defaults to true.
+            filename --> filename provided by user if they want to save
+                         the animation. Defaults to not save.
         '''
+        
+        boards = []
         for _ in range(steps):
             self.step()
-            self.view_board()
+            boards.append(np.copy(self.board))
+    
+        if ani:
+            boards = np.array(boards)
+            self.animate(boards, filename)
+            
+    
+    def animate(self, boards, filename=None):
+        '''
+        Animate the steps over time of the changing generations.
+        
+        Input:
+            boards   --> list of boards cooresponding to each generation.
+            filename --> filename for saved animation
+        '''
+            
+        fig, ax = plt.subplots()
+        ims = []
+        for board in boards:
+            b = ax.imshow(board, cmap='binary', animated=True)
+            ims.append([b])
+
+        ani = animation.ArtistAnimation(fig, ims, interval=50, blit=True,
+                                repeat_delay=1000)
+
+        if filename:
+            ani.save(filename, writer=Pillow)
+        plt.show()
     
     
     def view_board(self):
