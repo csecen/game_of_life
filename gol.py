@@ -130,7 +130,7 @@ class Game_Of_Life():
                                 repeat_delay=1000)
 
         if filename:
-            ani.save(filename, writer=Pillow)
+            ani.save(filename)
         plt.show()
     
     
@@ -139,4 +139,4 @@ class Game_Of_Life():
         Displays the board in it's current state.
         '''
         plt.imshow(self.board, cmap='binary')
-        plt.show
+        plt.show()
