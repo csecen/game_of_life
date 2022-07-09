@@ -2,10 +2,10 @@
 
 ##### The Game Of Life was developed by John Conway as a way to show that simple rules can lead to complex interaction. More information can be found [here](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
-##### The goal of this application is to provide the code for the game, to allow users to play with these rules and experiement with the possible interaction. Running the code in fairly simple:
+##### The goal of this application is to provide the code for the game, to allow users to play with these rules and experiement with the possible interaction. Running the code is fairly simple:
 1) Import the code using <code>from gol import Game_Of_Life as gol</code>
 2) Create an instance of the game <code>life = gol(X)</code>. The value X must be an integer and represents the size of the board that will be create, X by X.
-3) Run the game will <code>life.run(steps, animate, filename)</code>
+3) Run the game with <code>life.run(steps, animate, filename)</code>
     - The steps argument is an integer value representing the number of step you want the game to take, it is required
     - The animate argument is a boolean values that indicates whether you want the game to be displayed when you call run. It defaults to true.
     - If animate is true, the filename argument can be provided if you wish to save the animation.
